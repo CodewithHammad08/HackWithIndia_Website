@@ -1,0 +1,497 @@
+@import 'styles/_functions';
+
+// ── Design tokens ──────────────────────────────────────────────────────────────
+$sidebar-w-mobile: mobile-vw(56px);
+$sidebar-w-desktop: desktop-vw(68px);
+
+// ── Sidebar rail ───────────────────────────────────────────────────────────────
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: $sidebar-w-mobile;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: all;
+
+  // Always dark — never inherits theme
+  background-color: #000;
+  color: #efefef;
+  border-right: 1px solid rgba(239, 239, 239, 0.18);
+
+  @include desktop {
+    width: $sidebar-w-desktop;
+  }
+}
+
+// ── ME / NU toggle ─────────────────────────────────────────────────────────────
+.menuToggle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  padding: mobile-vw(14px) 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: currentColor;
+  width: 100%;
+  border-bottom: 1px solid rgba(239, 239, 239, 0.15);
+  flex-shrink: 0;
+  transition: background-color 0.25s ease, color 0.25s ease;
+
+  @include desktop {
+    padding: desktop-vw(16px) 0;
+  }
+
+  @include hover {
+    &:hover {
+      background-color: var(--pink);
+      color: rgb(239, 239, 239);
+    }
+  }
+
+  &.menuToggleOpen {
+    background-color: var(--pink);
+    color: rgb(239, 239, 239);
+  }
+}
+
+.menuHalf {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+
+  span {
+    font-family: 'Outfit', 'Inter', system-ui, sans-serif;
+    font-size: mobile-vw(11px);
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.2;
+    display: block;
+
+    @include desktop {
+      font-size: desktop-vw(11px);
+    }
+  }
+}
+
+// ── Brand wrapper ───────────────────────────────────────────────────────────
+.brandWrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  overflow: visible;
+  position: relative;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #efefef;
+  transform: rotate(-90deg);
+  transform-origin: center center;
+  white-space: nowrap;
+  transition: opacity 0.25s ease;
+
+  @include hover {
+    &:hover {
+      opacity: 0.55;
+    }
+  }
+}
+
+// ── SVG handwriting container ───────────────────────────────────────────────
+.sigSvg {
+  width: 280px;
+  height: auto;
+  overflow: visible;
+
+  @include desktop {
+    width: 320px;
+  }
+}
+
+// ── Text styles ─────────────────────────────────────────────────────────────
+.handwritingText {
+  font-family: 'Sacramento', cursive;
+  font-size: 38px;
+  fill: #efefef;
+  // No stroke, keeping the elegant thin look of the font
+  opacity: 1;
+  animation: textFade 6s infinite;
+}
+
+// ── Left-to-right wipe mask ────────────────────────────────────────────────
+.maskRect {
+  width: 0;
+  animation: writeMask 6s infinite;
+}
+
+// Mimic a natural handwriting speed by pausing briefly between words
+@keyframes writeMask {
+  0% {
+    width: 0;
+  }
+
+  15% {
+    width: 95px;
+    animation-timing-function: linear;
+  }
+
+  // H-a-c-k
+  18% {
+    width: 95px;
+  }
+
+  // Pause
+  35% {
+    width: 170px;
+    animation-timing-function: linear;
+  }
+
+  // w-i-t-h
+  38% {
+    width: 170px;
+  }
+
+  // Pause
+  55% {
+    width: 280px;
+    animation-timing-function: linear;
+  }
+
+  // I-n-d-i-a
+  100% {
+    width: 280px;
+  }
+}
+
+// Fade out the entire text smoothly before restarting
+@keyframes textFade {
+
+  0%,
+  75% {
+    opacity: 1;
+  }
+
+  85%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.dot {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--pink);
+  animation: dotPulse 3s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.35;
+  }
+}
+
+// ── Bottom version mark ────────────────────────────────────────────────────────
+.sideBottom {
+  padding: mobile-vw(12px) 0;
+  border-top: 1px solid rgba(239, 239, 239, 0.15);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  @include desktop {
+    padding: desktop-vw(14px) 0;
+  }
+}
+
+.versionMark {
+  font-family: 'Outfit', 'Inter', system-ui, sans-serif;
+  font-size: mobile-vw(8px);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.3;
+
+  @include desktop {
+    font-size: desktop-vw(9px);
+  }
+}
+
+// ── Full-screen overlay — slides from ABOVE ────────────────────────────────────
+.navPanel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  pointer-events: none;
+
+  // Start above viewport
+  transform: translateY(-100%);
+  transition: transform 0.7s cubic-bezier(0.76, 0, 0.24, 1);
+
+  // Always dark — never inherits theme
+  background-color: #000;
+  color: #efefef;
+
+  // Indent from sidebar rail
+  padding-left: $sidebar-w-mobile;
+
+  display: flex;
+  flex-direction: column;
+
+  @include desktop {
+    padding-left: $sidebar-w-desktop;
+  }
+
+  &.navPanelOpen {
+    transform: translateY(0);
+    pointer-events: all;
+  }
+}
+
+// ── Close × button — top right ─────────────────────────────────────────────────
+.closeBtn {
+  position: absolute;
+  top: mobile-vw(20px);
+  right: mobile-vw(24px);
+  width: mobile-vw(44px);
+  height: mobile-vw(44px);
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: currentColor;
+  opacity: 0.6;
+  flex-shrink: 0;
+  transition: opacity 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+
+  @include desktop {
+    top: desktop-vw(24px);
+    right: desktop-vw(40px);
+    width: desktop-vw(52px);
+    height: desktop-vw(52px);
+  }
+
+  @include hover {
+    &:hover {
+      opacity: 1;
+      background-color: var(--pink);
+      border-color: var(--pink);
+      color: rgb(239, 239, 239);
+
+      .closeLine {
+        background-color: rgb(239, 239, 239);
+      }
+    }
+  }
+}
+
+.closeLine {
+  position: absolute;
+  width: 45%;
+  height: 1.5px;
+  background-color: currentColor;
+  border-radius: 2px;
+  transition: background-color 0.2s ease;
+
+  &:first-child {
+    transform: rotate(45deg);
+  }
+
+  &:last-child {
+    transform: rotate(-45deg);
+  }
+}
+
+// ── Links grid — 2 columns ─────────────────────────────────────────────────────
+.navGrid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-content: center;
+  padding: mobile-vw(40px) mobile-vw(24px);
+  gap: 0;
+  border-top: 1px solid currentColor;
+
+  @include desktop {
+    padding: desktop-vw(60px) desktop-vw(80px);
+  }
+}
+
+.navLink {
+  display: flex;
+  align-items: flex-start;
+  gap: mobile-vw(10px);
+  padding: mobile-vw(20px) mobile-vw(8px);
+  text-decoration: none;
+  color: currentColor;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.15);
+  position: relative;
+
+  // Staggered reveal on open
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.5s ease calc(var(--i, 0) * 0.08s + 0.2s),
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--i, 0) * 0.08s + 0.2s);
+
+  @include desktop {
+    padding: desktop-vw(28px) desktop-vw(16px);
+    gap: desktop-vw(12px);
+  }
+
+  .navPanelOpen & {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  // Pink underline sweep on hover
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background: var(--pink);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @include hover {
+    &:hover {
+      &::after {
+        transform: scaleX(1);
+      }
+
+      .navArrow {
+        opacity: 1;
+        transform: translate(4px, -4px) scale(1);
+      }
+
+      .navLabel {
+        opacity: 1;
+      }
+    }
+  }
+
+  &.navLinkActive {
+    .navLabel {
+      opacity: 1;
+    }
+
+    &::after {
+      transform: scaleX(1);
+    }
+  }
+}
+
+.navNum {
+  font-family: 'Outfit', 'Inter', system-ui, sans-serif;
+  font-size: mobile-vw(9px);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  opacity: 0.3;
+  margin-top: mobile-vw(6px);
+  flex-shrink: 0;
+
+  @include desktop {
+    font-size: desktop-vw(10px);
+    margin-top: desktop-vw(8px);
+  }
+}
+
+.navLabel {
+  font-family: 'Outfit', 'Inter', system-ui, sans-serif;
+  font-size: mobile-vw(24px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  line-height: 1;
+  opacity: 0.55;
+  transition: opacity 0.2s ease;
+
+  @include desktop {
+    font-size: desktop-vw(52px);
+  }
+}
+
+.navArrow {
+  width: mobile-vw(28px);
+  height: mobile-vw(28px);
+  border-radius: 50%;
+  border: 1.5px solid var(--pink);
+  background: var(--pink);
+  color: rgb(239, 239, 239);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: mobile-vw(4px);
+  opacity: 0;
+  transform: translate(0, 0) scale(0.7);
+  transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+  svg {
+    width: 55%;
+    height: 55%;
+  }
+
+  @include desktop {
+    width: desktop-vw(40px);
+    height: desktop-vw(40px);
+    margin-top: desktop-vw(8px);
+  }
+}
+
+// ── Panel footer ───────────────────────────────────────────────────────────────
+.panelFooter {
+  padding: mobile-vw(14px) mobile-vw(24px);
+  border-top: 1px solid rgba(128, 128, 128, 0.2);
+  flex-shrink: 0;
+
+  @include desktop {
+    padding: desktop-vw(18px) desktop-vw(80px);
+  }
+}
+
+.footerTag {
+  font-family: 'Outfit', 'Inter', system-ui, sans-serif;
+  font-size: mobile-vw(9px);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.3;
+
+  @include desktop {
+    font-size: desktop-vw(10px);
+  }
+}
