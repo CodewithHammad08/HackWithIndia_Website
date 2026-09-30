@@ -34,7 +34,7 @@ export default function Archive() {
         
         <div className={s.archiveList}>
           {archives.map((archive, i) => (
-            <Link href="#" key={i} className={s.archiveRow}>
+            <Link href={`/event/${archive.name.toLowerCase().replace(/\s+/g, '-')}`} key={i} className={s.archiveRow}>
               <div className={s.archiveRowTop}>
                 <span className={s.year}>{archive.name}</span>
                 <span className={s.type} style={{ color: 'var(--red)' }}>{archive.details}</span>

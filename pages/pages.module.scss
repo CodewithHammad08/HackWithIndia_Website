@@ -1003,3 +1003,248 @@
     }
   }
 }
+
+// ── Contact Page Styles ───────────────────────────────────────────────────
+
+.contactPageWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-top: desktop-vw(100px);
+  
+  @include mobile {
+    padding-top: mobile-vw(80px);
+  }
+}
+
+.contactGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  flex: 1;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contactCol {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: desktop-vw(60px) desktop-vw(50px);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+
+  &:last-child {
+    border-right: none;
+  }
+
+  @include mobile {
+    padding: mobile-vw(50px) mobile-vw(30px);
+    min-height: mobile-vw(450px);
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+}
+
+.colHeader {
+  display: flex;
+  flex-direction: column;
+  gap: desktop-vw(10px);
+  z-index: 2;
+  
+  .num {
+    font-size: desktop-vw(18px);
+    color: #666;
+    font-family: var(--font-primary);
+    font-weight: 700;
+  }
+  
+  .title {
+    font-size: desktop-vw(11px);
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+  }
+}
+
+.colContent {
+  display: flex;
+  flex-direction: column;
+  gap: desktop-vw(30px);
+  z-index: 2;
+  margin-top: desktop-vw(220px);
+  flex: 1;
+  
+  @include mobile {
+    margin-top: mobile-vw(120px);
+  }
+
+  h2 {
+    font-size: desktop-vw(55px);
+    color: var(--white);
+    font-family: var(--font-primary);
+    letter-spacing: -0.02em;
+    
+    @include mobile {
+      font-size: mobile-vw(40px);
+    }
+  }
+
+  p {
+    font-size: desktop-vw(15px);
+    color: #888;
+    line-height: 1.6;
+    max-width: 90%;
+    
+    @include mobile {
+      font-size: mobile-vw(14px);
+    }
+  }
+
+  .emailText {
+    font-size: desktop-vw(15px);
+    color: var(--white);
+    font-weight: 700;
+  }
+}
+
+.colFooter {
+  z-index: 2;
+  margin-top: desktop-vw(40px);
+}
+
+.actionLink {
+  display: inline-flex;
+  align-items: center;
+  gap: desktop-vw(15px);
+  color: var(--white);
+  text-decoration: none;
+  font-size: desktop-vw(11px);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  transition: color 0.3s ease;
+  
+  .iconWrap {
+    display: flex;
+    align-items: center;
+    gap: desktop-vw(10px);
+    
+    svg {
+      width: desktop-vw(18px);
+      height: desktop-vw(18px);
+      transition: color 0.3s ease;
+      color: #666;
+    }
+    
+    .arrow {
+      width: desktop-vw(14px);
+      height: desktop-vw(14px);
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+  }
+
+  &:hover {
+    .arrow {
+      transform: translateX(desktop-vw(4px));
+      color: var(--red);
+    }
+    .whatsappIcon {
+      color: #25D366;
+    }
+    .mailIcon {
+      color: var(--white);
+    }
+  }
+}
+
+.socialList {
+  display: flex;
+  flex-direction: column;
+  gap: desktop-vw(20px);
+  
+  a {
+    display: flex;
+    align-items: center;
+    gap: desktop-vw(15px);
+    color: #888;
+    text-decoration: none;
+    font-size: desktop-vw(11px);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 700;
+    transition: color 0.3s ease;
+    
+    svg {
+      width: desktop-vw(18px);
+      height: desktop-vw(18px);
+      transition: color 0.3s ease;
+    }
+    
+    &:hover {
+      color: var(--white);
+    }
+  }
+}
+
+.watermarkText {
+  position: absolute;
+  bottom: desktop-vw(-40px);
+  left: desktop-vw(30px);
+  font-size: desktop-vw(160px);
+  font-family: var(--font-primary);
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.02);
+  pointer-events: none;
+  white-space: nowrap;
+  
+  @include mobile {
+    font-size: mobile-vw(100px);
+    bottom: mobile-vw(-20px);
+    left: mobile-vw(20px);
+  }
+}
+
+.contactFooterBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: desktop-vw(40px);
+  padding: desktop-vw(35px);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: desktop-vw(11px);
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-weight: 700;
+  background: var(--black);
+  
+  @include mobile {
+    flex-direction: column;
+    gap: mobile-vw(15px);
+    font-size: mobile-vw(10px);
+    padding: mobile-vw(25px);
+  }
+  
+  span {
+    display: flex;
+    align-items: center;
+    gap: desktop-vw(40px);
+    
+    @include mobile {
+      gap: mobile-vw(15px);
+    }
+    
+    &::after {
+      content: "•";
+      color: rgba(255, 255, 255, 0.1);
+    }
+    
+    &:last-child::after {
+      display: none;
+    }
+  }
+}

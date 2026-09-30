@@ -1,0 +1,506 @@
+@import 'styles/_functions';
+
+.page {
+  background-color: #0b0b0b;
+  color: var(--theme-secondary);
+  position: relative;
+  z-index: 1;
+}
+
+// Hero Section
+.hero {
+  position: relative;
+  text-align: center;
+  padding: desktop-vw(200px) 0 desktop-vw(150px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  @include mobile {
+    padding: mobile-vw(150px) 0 mobile-vw(100px);
+  }
+
+  .watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: desktop-vw(450px);
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.02);
+    z-index: -1;
+    pointer-events: none;
+    font-family: var(--font-primary);
+    white-space: nowrap;
+
+    @include mobile {
+      font-size: mobile-vw(200px);
+    }
+  }
+
+  .tag {
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    color: var(--red);
+    padding: desktop-vw(8px) desktop-vw(20px);
+    border-radius: 50px;
+    font-size: desktop-vw(12px);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    margin-bottom: desktop-vw(40px);
+    transition: background 0.3s ease;
+    
+    &:hover {
+      background: rgba(255, 0, 0, 0.1);
+    }
+
+    @include mobile {
+      padding: mobile-vw(8px) mobile-vw(15px);
+      font-size: mobile-vw(10px);
+      margin-bottom: mobile-vw(30px);
+    }
+  }
+
+  h1 {
+    font-size: desktop-vw(120px);
+    color: var(--white);
+    font-family: var(--font-primary);
+    text-transform: uppercase;
+    margin-bottom: desktop-vw(40px);
+    letter-spacing: -0.02em;
+
+    @include mobile {
+      font-size: mobile-vw(50px);
+      margin-bottom: mobile-vw(30px);
+    }
+  }
+
+  .meta {
+    display: flex;
+    align-items: center;
+    gap: desktop-vw(30px);
+    font-size: desktop-vw(12px);
+    color: var(--grey);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+
+    @include mobile {
+      gap: mobile-vw(15px);
+      font-size: mobile-vw(10px);
+    }
+
+    span {
+      display: flex;
+      align-items: center;
+      gap: desktop-vw(30px);
+
+      @include mobile {
+        gap: mobile-vw(15px);
+      }
+
+      &::after {
+        content: "•";
+        color: rgba(255, 255, 255, 0.2);
+      }
+
+      &:last-child::after {
+        display: none;
+      }
+    }
+  }
+}
+
+// About Section
+.aboutSection {
+  display: flex;
+  justify-content: space-between;
+  padding: desktop-vw(80px) desktop-vw(120px);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+  @include mobile {
+    flex-direction: column;
+    padding: mobile-vw(60px) mobile-vw(20px);
+    gap: mobile-vw(60px);
+  }
+
+  .aboutLeft {
+    width: 45%;
+
+    @include mobile {
+      width: 100%;
+    }
+
+    h2 {
+      color: var(--red);
+      font-size: desktop-vw(24px);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: desktop-vw(40px);
+      font-family: var(--font-primary);
+
+      @include mobile {
+        font-size: mobile-vw(20px);
+        margin-bottom: mobile-vw(30px);
+      }
+    }
+
+    p {
+      color: #e0e0e0;
+      font-size: desktop-vw(18px);
+      line-height: 1.6;
+      font-family: var(--font-secondary); // Assuming sans-serif for body
+
+      @include mobile {
+        font-size: mobile-vw(14px);
+      }
+    }
+  }
+
+  .aboutRight {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: desktop-vw(50px);
+
+    @include mobile {
+      width: 100%;
+      gap: mobile-vw(30px);
+    }
+
+    .stat {
+      border-left: 2px solid var(--red);
+      padding-left: desktop-vw(25px);
+
+      @include mobile {
+        padding-left: mobile-vw(15px);
+      }
+
+      h3 {
+        font-size: desktop-vw(48px);
+        color: var(--white);
+        font-family: var(--font-primary);
+        margin-bottom: desktop-vw(10px);
+        letter-spacing: -0.02em;
+
+        @include mobile {
+          font-size: mobile-vw(32px);
+        }
+      }
+
+      p {
+        font-size: desktop-vw(12px);
+        color: var(--grey);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-weight: 700;
+
+        @include mobile {
+          font-size: mobile-vw(10px);
+        }
+      }
+    }
+  }
+}
+
+.detailsGrid {
+  display: flex;
+  justify-content: space-between;
+  padding: desktop-vw(60px) desktop-vw(120px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+  @include mobile {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: mobile-vw(40px) mobile-vw(20px);
+    gap: mobile-vw(30px);
+  }
+
+  .detailItem {
+    display: flex;
+    flex-direction: column;
+    gap: desktop-vw(15px);
+
+    @include mobile {
+      gap: mobile-vw(10px);
+    }
+
+    h4 {
+      color: var(--red);
+      font-size: desktop-vw(12px);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+
+      @include mobile {
+        font-size: mobile-vw(10px);
+      }
+    }
+
+    p {
+      color: var(--white);
+      font-size: desktop-vw(16px);
+      font-family: var(--font-primary);
+
+      @include mobile {
+        font-size: mobile-vw(14px);
+      }
+    }
+  }
+}
+
+// Guests Section
+.guestsSection {
+  padding: desktop-vw(100px) desktop-vw(120px);
+
+  @include mobile {
+    padding: mobile-vw(60px) mobile-vw(20px);
+  }
+
+  h2 {
+    color: var(--red);
+    font-size: desktop-vw(24px);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: desktop-vw(60px);
+    font-family: var(--font-primary);
+
+    @include mobile {
+      font-size: mobile-vw(20px);
+      margin-bottom: mobile-vw(40px);
+    }
+  }
+
+  .guestGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: desktop-vw(30px);
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: mobile-vw(20px);
+    }
+
+    .guestCard {
+      background: rgba(255, 255, 255, 0.02);
+      padding: desktop-vw(40px);
+      display: flex;
+      flex-direction: column;
+      gap: desktop-vw(15px);
+      transition: background 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+
+      @include mobile {
+        padding: mobile-vw(30px);
+        gap: mobile-vw(10px);
+      }
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      h3 {
+        color: var(--white);
+        font-size: desktop-vw(24px);
+        font-family: var(--font-primary);
+        letter-spacing: -0.01em;
+
+        @include mobile {
+          font-size: mobile-vw(20px);
+        }
+      }
+
+      .role {
+        color: var(--red);
+        font-size: desktop-vw(12px);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-weight: 700;
+
+        @include mobile {
+          font-size: mobile-vw(10px);
+        }
+      }
+
+      .company {
+        color: var(--grey);
+        font-size: desktop-vw(14px);
+
+        @include mobile {
+          font-size: mobile-vw(12px);
+        }
+      }
+    }
+  }
+}
+
+// Gallery Section
+.gallerySection {
+  padding: desktop-vw(100px) desktop-vw(120px);
+
+  @include mobile {
+    padding: mobile-vw(60px) mobile-vw(20px);
+  }
+
+  h2 {
+    color: var(--red);
+    font-size: desktop-vw(24px);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: desktop-vw(60px);
+    font-family: var(--font-primary);
+
+    @include mobile {
+      font-size: mobile-vw(20px);
+      margin-bottom: mobile-vw(40px);
+    }
+  }
+
+  .galleryGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: desktop-vw(40px);
+    margin-bottom: desktop-vw(60px);
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: mobile-vw(20px);
+      margin-bottom: mobile-vw(40px);
+    }
+
+    .imageWrapper {
+      position: relative;
+      width: 100%;
+      padding-bottom: 125%; // Aspect ratio 4:5 for posters
+      background: rgba(255, 255, 255, 0.05);
+      overflow: hidden;
+      
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain; // Keeping full poster visible
+        background: white; // Assuming posters might have white backgrounds
+      }
+    }
+  }
+  
+  .exploreLink {
+    display: block;
+    text-align: center;
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    font-size: desktop-vw(14px);
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+
+    @include mobile {
+      font-size: mobile-vw(12px);
+    }
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+// Highlights Section
+.highlightsSection {
+  padding: desktop-vw(100px) desktop-vw(120px) desktop-vw(150px);
+
+  @include mobile {
+    padding: mobile-vw(60px) mobile-vw(20px) mobile-vw(100px);
+  }
+
+  h2 {
+    color: var(--red);
+    font-size: desktop-vw(24px);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: desktop-vw(60px);
+    font-family: var(--font-primary);
+
+    @include mobile {
+      font-size: mobile-vw(20px);
+      margin-bottom: mobile-vw(40px);
+    }
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: desktop-vw(40px);
+
+    @include mobile {
+      gap: mobile-vw(25px);
+    }
+
+    li {
+      font-size: desktop-vw(28px);
+      color: var(--white);
+      font-family: var(--font-primary);
+      line-height: 1.4;
+
+      @include mobile {
+        font-size: mobile-vw(20px);
+      }
+    }
+  }
+  
+  .nextEvent {
+    margin-top: desktop-vw(100px);
+    text-align: right;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: desktop-vw(50px);
+
+    @include mobile {
+      margin-top: mobile-vw(60px);
+      padding-top: mobile-vw(30px);
+    }
+
+    p {
+      color: var(--grey);
+      font-size: desktop-vw(12px);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: desktop-vw(15px);
+      font-weight: 700;
+
+      @include mobile {
+        font-size: mobile-vw(10px);
+        margin-bottom: mobile-vw(10px);
+      }
+    }
+
+    a {
+      color: var(--white);
+      font-size: desktop-vw(40px);
+      font-family: var(--font-primary);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: desktop-vw(10px);
+
+      @include mobile {
+        font-size: mobile-vw(24px);
+        gap: mobile-vw(5px);
+      }
+
+      &:hover {
+        color: var(--red);
+      }
+    }
+  }
+}
