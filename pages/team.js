@@ -1,5 +1,6 @@
 import { Layout } from 'layouts/default'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { TypeAnimation } from 'react-type-animation'
 import s from './pages.module.scss'
 
 // Simple SVG Icons
@@ -23,6 +24,21 @@ const EmailIcon = () => (
 
 export default function Team() {
   const [selectedMember, setSelectedMember] = useState(null)
+  const [bannerInView, setBannerInView] = useState(false)
+  const bannerRef = useRef(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setBannerInView(true)
+        }
+      },
+      { threshold: 0.2 }
+    )
+    if (bannerRef.current) observer.observe(bannerRef.current)
+    return () => observer.disconnect()
+  }, [])
 
   const presidents = [
     { name: 'Krishnakant Sharma', role: 'President' },
@@ -107,6 +123,27 @@ export default function Team() {
               </div>
             </div>
 
+          </div>
+
+          {/* Archive Banner */}
+          <div className={s.archiveBanner} ref={bannerRef}>
+            {bannerInView ? (
+              <TypeAnimation
+                sequence={['Every Tenure. Every Team.', 1000]}
+                wrapper="h2"
+                cursor={true}
+                repeat={0}
+              />
+            ) : (
+              <h2>&nbsp;</h2>
+            )}
+            <p>Explore the teams that built HackWithIndia.</p>
+            <a href="/archive" className={s.circleButton}>
+              <svg viewBox="0 0 24 24">
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+              </svg>
+            </a>
+            <span className={s.buttonText}>View Past Teams</span>
           </div>
         </main>
       </Layout>

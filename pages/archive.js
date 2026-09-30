@@ -1,34 +1,31 @@
 import { Layout } from 'layouts/default'
-import { Button } from 'components/button'
+import Link from 'next/link'
 import s from './pages.module.scss'
 
 export default function Archive() {
-  const events = [
-    { title: 'Hack with India 2023', date: 'October 2023', desc: 'Over 5000 participants and 100+ amazing projects.' },
-    { title: 'Hack with India 2022', date: 'September 2022', desc: 'The first hybrid hackathon post-pandemic.' },
-    { title: 'Hack with India 2021', date: 'August 2021', desc: 'Our entirely virtual hackathon that broke records.' },
+  const archives = [
+    { year: '2026–27', type: 'Current Team', count: '22 members', isCurrent: true },
+    { year: '2025–26', type: 'Core Team', count: '21 members', isCurrent: false },
+    { year: '2024–25', type: 'Core Team', count: '9 members', isCurrent: false },
+    { year: '2023–24', type: 'Core Team', count: '7 members', isCurrent: false },
   ]
 
   return (
     <Layout theme="dark" seo={{ title: 'Archive - Hack with India', description: 'Archive of past Hack with India events' }}>
-      <main className={s.page}>
-        <div className={s.hero}>
-          <h1 className={s.title}>The <span>Archive</span></h1>
-          <p className={s.subtitle}>A look back at our previous editions, the winners, the projects, and the memories.</p>
+      <main className={s.page} style={{ paddingTop: '150px' }}>
+        <div className={s.archiveHeader}>
+          <h1>The Archive</h1>
+          <p>Every team. Every tenure. Every name.</p>
         </div>
         
-        <div className={s.content}>
-          <div className={s.grid}>
-            {events.map((evt, i) => (
-              <div key={i} className={s.eventCard}>
-                <div className={s.eventImage}></div>
-                <p className={s.date}>{evt.date}</p>
-                <h3>{evt.title}</h3>
-                <p>{evt.desc}</p>
-                <Button arrow style={{ marginTop: '20px', padding: 0, background: 'transparent' }}>View Gallery</Button>
-              </div>
-            ))}
-          </div>
+        <div className={s.archiveList}>
+          {archives.map((archive, i) => (
+            <Link href={archive.isCurrent ? "/team" : "#"} key={i} className={s.archiveRow}>
+              <span className={`${s.year} ${archive.isCurrent ? s.current : ''}`}>{archive.year}</span>
+              <span className={`${s.type} ${archive.isCurrent ? s.current : ''}`}>{archive.type}</span>
+              <span className={s.count}>{archive.count}</span>
+            </Link>
+          ))}
         </div>
       </main>
     </Layout>

@@ -462,3 +462,216 @@
     }
   }
 }
+
+// ── Archive Banner Styles ───────────────────────────────────────────────────
+
+.archiveBanner {
+  background: var(--red);
+  padding: desktop-vw(100px) desktop-vw(20px);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: desktop-vw(120px);
+  margin-left: desktop-vw(-120px); // negate page padding
+  margin-right: desktop-vw(-120px);
+  margin-bottom: desktop-vw(-100px);
+  
+  @include mobile {
+    padding: mobile-vw(80px) mobile-vw(20px);
+    margin-top: mobile-vw(80px);
+    margin-left: mobile-vw(-40px);
+    margin-right: mobile-vw(-40px);
+    margin-bottom: mobile-vw(-80px);
+  }
+  
+  h2 {
+    font-size: desktop-vw(60px);
+    color: var(--white);
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: desktop-vw(20px);
+    font-family: var(--font-primary); // Assuming we use a serif/display font, it should match the image
+    
+    @include mobile {
+      font-size: mobile-vw(36px);
+      margin-bottom: mobile-vw(15px);
+    }
+  }
+  
+  p {
+    font-size: desktop-vw(16px);
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: desktop-vw(60px);
+    
+    @include mobile {
+      font-size: mobile-vw(12px);
+      margin-bottom: mobile-vw(40px);
+    }
+  }
+  
+  .circleButton {
+    width: desktop-vw(120px);
+    height: desktop-vw(120px);
+    border-radius: 50%;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: desktop-vw(20px);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    
+    @include mobile {
+      width: mobile-vw(90px);
+      height: mobile-vw(90px);
+      margin-bottom: mobile-vw(15px);
+    }
+    
+    &:hover {
+      transform: scale(1.05);
+    }
+    
+    svg {
+      width: desktop-vw(40px);
+      height: desktop-vw(40px);
+      fill: none;
+      stroke: black;
+      stroke-width: 1.5;
+      
+      @include mobile {
+        width: mobile-vw(30px);
+        height: mobile-vw(30px);
+      }
+    }
+  }
+  
+  .buttonText {
+    font-size: desktop-vw(14px);
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    
+    @include mobile {
+      font-size: mobile-vw(12px);
+    }
+  }
+}
+
+// ── Archive Page Styles ───────────────────────────────────────────────────
+
+.archiveHeader {
+  text-align: center;
+  margin-bottom: desktop-vw(80px);
+  
+  @include mobile {
+    margin-bottom: mobile-vw(60px);
+  }
+  
+  h1 {
+    font-size: desktop-vw(80px);
+    color: var(--white);
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: desktop-vw(20px);
+    
+    @include mobile {
+      font-size: mobile-vw(40px);
+    }
+  }
+  
+  p {
+    font-size: desktop-vw(16px);
+    color: var(--grey);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    
+    @include mobile {
+      font-size: mobile-vw(12px);
+    }
+  }
+}
+
+.archiveList {
+  width: 100%;
+  max-width: desktop-vw(1200px);
+  margin: 0 auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  
+  @include mobile {
+    max-width: 100%;
+  }
+}
+
+.archiveRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: desktop-vw(40px) desktop-vw(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  
+  @include mobile {
+    padding: mobile-vw(30px) mobile-vw(10px);
+  }
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.03);
+    
+    .year {
+      color: var(--red);
+    }
+  }
+  
+  .year {
+    font-size: desktop-vw(40px);
+    color: var(--white);
+    font-weight: 700;
+    width: 30%;
+    transition: color 0.3s ease;
+    font-family: var(--font-primary);
+    
+    @include mobile {
+      font-size: mobile-vw(24px);
+    }
+    
+    &.current {
+      color: var(--red);
+    }
+  }
+  
+  .type {
+    font-size: desktop-vw(14px);
+    color: var(--grey);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    width: 40%;
+    text-align: center;
+    
+    &.current {
+      color: var(--red);
+    }
+    
+    @include mobile {
+      font-size: mobile-vw(10px);
+    }
+  }
+  
+  .count {
+    font-size: desktop-vw(14px);
+    color: var(--grey);
+    width: 30%;
+    text-align: right;
+    
+    @include mobile {
+      font-size: mobile-vw(12px);
+    }
+  }
+}
