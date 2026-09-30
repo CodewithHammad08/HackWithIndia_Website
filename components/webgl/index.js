@@ -515,7 +515,7 @@ export function Arm() {
   )
 }
 
-function Content() {
+function Content({ particlesOnly }) {
   const { viewport } = useThree()
 
   return (
@@ -530,12 +530,12 @@ function Content() {
         size={150}
       />
 
-      <Arm />
+      {!particlesOnly && <Arm />}
     </>
   )
 }
 
-export function WebGL({ render = true }) {
+export function WebGL({ render = true, particlesOnly = false }) {
   return (
     <Canvas
       gl={{
@@ -552,7 +552,7 @@ export function WebGL({ render = true }) {
     >
       <Raf render={render} />
       <Suspense>
-        <Content />
+        <Content particlesOnly={particlesOnly} />
       </Suspense>
     </Canvas>
   )

@@ -1,7 +1,13 @@
 import { Layout } from 'layouts/default'
 import { useState, useEffect, useRef } from 'react'
 import { TypeAnimation } from 'react-type-animation'
+import dynamic from 'next/dynamic'
 import s from './pages.module.scss'
+
+const WebGL = dynamic(
+  () => import('components/webgl').then(({ WebGL }) => WebGL),
+  { ssr: false }
+)
 
 // Simple SVG Icons
 const LinkedInIcon = () => (
@@ -74,7 +80,9 @@ export default function Team() {
 
   const renderCard = (member, i) => (
     <div key={i} className={s.teamCard} onClick={() => setSelectedMember(member)}>
-      <div className={s.teamImage}></div>
+      <div className={s.teamImageWrapper}>
+        <div className={s.teamImage}></div>
+      </div>
       <h3>{member.name}</h3>
       <p className={s.role}>{member.role}</p>
       <p className={s.viewProfile}>VIEW PROFILE</p>
@@ -84,6 +92,9 @@ export default function Team() {
   return (
     <>
       <Layout theme="dark" seo={{ title: 'Team - Hack with India', description: 'The team behind Hack with India' }}>
+        <div className={s.canvas}>
+          <WebGL particlesOnly={true} />
+        </div>
         <main className={s.page}>
           <div className={s.hero}>
             <h1 className={s.title}>The <span>Team</span></h1>

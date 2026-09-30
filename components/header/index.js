@@ -1,6 +1,7 @@
 import { forwardRef, useEffect, useState, useCallback } from 'react'
 import cn from 'clsx'
 import { Link } from 'components/link'
+import { useStore } from 'lib/store'
 import s from './header.module.scss'
 
 const NAV_LINKS = [
@@ -51,6 +52,7 @@ function HandwrittenBrand() {
 export const Header = forwardRef(({ className }, ref) => {
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeLink, setActiveLink] = useState(null)
+  const introOut = useStore(({ introOut }) => introOut)
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
@@ -70,7 +72,7 @@ export const Header = forwardRef(({ className }, ref) => {
 
   return (
     <>
-      <header className={cn(s.sidebar, className)} ref={ref}>
+      <header className={cn(s.sidebar, !introOut && s.hidden, className)} ref={ref}>
 
         <button
           className={cn(s.menuToggle, menuOpen && s.menuToggleOpen)}

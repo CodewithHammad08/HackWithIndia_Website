@@ -3,32 +3,52 @@ import s from './pages.module.scss'
 
 export default function OurMentors() {
   const mentors = [
-    { name: 'Alice Smith', role: 'Senior Software Engineer at Google' },
-    { name: 'Bob Jones', role: 'Product Manager at Microsoft' },
-    { name: 'Charlie Davis', role: 'Design Lead at Meta' },
-    { name: 'Diana Prince', role: 'AI Researcher at OpenAI' },
-    { name: 'Evan Wright', role: 'Startup Founder' },
-    { name: 'Fiona Lee', role: 'Venture Capitalist' },
+    { name: 'AYUSH PANDEY', role: 'CS ENGINEER', company: 'PIXELS CREATIVE TECHNOLOGIES' },
+    { name: 'ANSH VERMA', role: 'CS ENGINEER', company: 'FLYTBASE' },
+    { name: 'TBD', role: 'CEO & FOUNDER', company: 'DRONE VEDA TECHNOLOGY OPC PVT LTD' },
   ]
 
   return (
-    <Layout theme="dark" seo={{ title: 'Our Mentors - Hack with India', description: 'Meet our mentors at Hack with India' }}>
-      <main className={s.page}>
-        <div className={s.hero}>
-          <h1 className={s.title}>Our <span>Mentors</span></h1>
-          <p className={s.subtitle}>Learn from the best in the industry. Our mentors are here to guide you through your hackathon journey.</p>
+    <Layout theme="light" seo={{ title: 'Our Mentors - Hack with India', description: 'Meet our mentors at Hack with India' }}>
+      <main className={s.page} style={{ paddingTop: '150px' }}>
+        <div className={s.mentorHero}>
+          <h1>Meet Our Mentors</h1>
+          <p>Connect with experienced founders and industry professionals who are ready to guide student entrepreneurs through every stage of building a startup.</p>
         </div>
         
-        <div className={s.content}>
-          <div className={s.grid}>
-            {mentors.map((mentor, i) => (
-              <div key={i} className={s.profileCard}>
-                <div className={s.avatar}></div>
-                <h3>{mentor.name}</h3>
-                <p>{mentor.role}</p>
-              </div>
-            ))}
-          </div>
+        <div className={s.mentorList}>
+          {mentors.map((mentor, i) => (
+            <div key={i} className={s.mentorRow}>
+              <span className={s.mentorName}>{mentor.name}</span>
+              <span className={s.mentorRole}>{mentor.role}</span>
+              <span className={s.mentorCompany}>{mentor.company}</span>
+            </div>
+          ))}
+        </div>
+
+        <div className={s.mentorFormWrapper}>
+          <h2>Become a Mentor</h2>
+          <p>Want to give back to the community? Apply to be a mentor and guide the next generation of builders.</p>
+          
+          <form className={s.mentorForm} onSubmit={(e) => e.preventDefault()}>
+            <div className={s.inputGroup}>
+              <label>Full Name</label>
+              <input type="text" placeholder="John Doe" />
+            </div>
+            <div className={s.inputGroup}>
+              <label>Email Address</label>
+              <input type="email" placeholder="john@example.com" />
+            </div>
+            <div className={s.inputGroup}>
+              <label>Current Role & Company</label>
+              <input type="text" placeholder="e.g. Senior Engineer at Google" />
+            </div>
+            <div className={s.inputGroup}>
+              <label>Why do you want to mentor?</label>
+              <textarea placeholder="Tell us about your experience..." />
+            </div>
+            <button type="submit">Submit Application</button>
+          </form>
         </div>
       </main>
     </Layout>

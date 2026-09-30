@@ -17,10 +17,22 @@ $sidebar-w-desktop: desktop-vw(68px);
   align-items: center;
   pointer-events: all;
 
-  // Always dark — never inherits theme
+  // Final state
   background-color: #000;
   color: #efefef;
   border-right: 1px solid rgba(239, 239, 239, 0.18);
+
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform 1.2s cubic-bezier(0.76, 0, 0.24, 1), background-color 1.2s cubic-bezier(0.76, 0, 0.24, 1), opacity 0s;
+
+  &.hidden {
+    transform: translateY(100%);
+    background-color: #fff;
+    opacity: 0;
+    transition: none;
+    pointer-events: none;
+  }
 
   @include desktop {
     width: $sidebar-w-desktop;
@@ -239,7 +251,7 @@ $sidebar-w-desktop: desktop-vw(68px);
   }
 }
 
-// ── Full-screen overlay — slides from ABOVE ────────────────────────────────────
+// ── Full-screen overlay — slides from BOTTOM and transitions White to Black ──
 .navPanel {
   position: fixed;
   top: 0;
@@ -249,12 +261,12 @@ $sidebar-w-desktop: desktop-vw(68px);
   z-index: 1000;
   pointer-events: none;
 
-  // Start above viewport
-  transform: translateY(-100%);
-  transition: transform 0.7s cubic-bezier(0.76, 0, 0.24, 1);
+  // Start below viewport
+  transform: translateY(100%);
+  transition: transform 0.7s cubic-bezier(0.76, 0, 0.24, 1), background-color 0.7s cubic-bezier(0.76, 0, 0.24, 1);
 
-  // Always dark — never inherits theme
-  background-color: #000;
+  // Start white, transition to black
+  background-color: #fff;
   color: #efefef;
 
   // Indent from sidebar rail
@@ -269,6 +281,7 @@ $sidebar-w-desktop: desktop-vw(68px);
 
   &.navPanelOpen {
     transform: translateY(0);
+    background-color: #000;
     pointer-events: all;
   }
 }
@@ -335,6 +348,8 @@ $sidebar-w-desktop: desktop-vw(68px);
   flex: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(4, auto);
+  grid-auto-flow: column;
   align-content: center;
   padding: mobile-vw(40px) mobile-vw(24px);
   gap: 0;
